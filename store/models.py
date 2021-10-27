@@ -48,5 +48,8 @@ class Product(models.Model):
     def add_to_basket_url(self):
         return reverse('basket:add-to-basket', kwargs={'product_id' : self.id})
 
+    def remove_from_basket_url(self):
+        return reverse('basket:remove-from-basket', kwargs={'product_id' : self.id})
+
     def __str__(self):
         return self.title
