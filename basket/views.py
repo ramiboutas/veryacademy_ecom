@@ -25,4 +25,4 @@ def remove_from_basket(request, product_id):
     basket = Basket(request)
     product = get_object_or_404(Product, id=product_id)
     basket.delete(product=product)
-    return HttpResponse()
+    return render(request, 'store/basket/_basketheader.html')

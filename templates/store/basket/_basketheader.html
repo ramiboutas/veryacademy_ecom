@@ -1,0 +1,17 @@
+
+<div class="col-12 text-center">
+  {% if basket|length == 0 %}
+    <h1 class="h2">Your basket is empty </h1>
+    <br>
+    <div class="col-12 text-center">
+      <a role="button" href="{% url 'store:product_all' %}"
+          class="btn btn-lg btn-success fw-bold" type="button">Check our products!</a>
+    </div>
+  {% else %}
+    <h1 class="h2">Your Basket  </h1>
+    <h1 class="h6"> £ {{basket.get_total_price}} </h1>
+    <div class="col-12 text-center">
+      <a role="button" href="." class="btn btn-lg btn-success fw-bold" type="button">Checkout</a>
+    </div>
+  {% endif %}
+</div>
