@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 
 from .models import Category, Product
-
+from basket.basket import Basket
 
 def product_all(request):
     products = Product.products.all()
@@ -16,4 +16,7 @@ def category_list(request, category_slug=None):
 
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug, in_stock=True)
-    return render(request, 'store/products/single.html', {'product': product})
+    basket = Basket(request)
+    added = basket.product_in_basket(product=product)
+    context = {'product': product, 'added': added}
+    return render(request, 'store/products/single.html', context)

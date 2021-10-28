@@ -6,13 +6,14 @@
 {% block content %}
 
 <div class="container">
-  <div class="row" id="basket-header">
-    {% include "store/basket/_basketheader.html" %}
+  <div class="row" id="basket-header" hx-get="{% url 'basket:update-details' %}"
+      hx-trigger="load delay:0.5s, updateBasketDetails from:body"   >
+    {% include "store/basket/_details.html" %}
   </div>
-  <hr />
+  <br />
   <div class="row g-3">
     {% if basket|length > 0 %}
-    <div class="col-12 border">
+    <div class="col-12">
       {% for item in basket %}
         {% with product=item.product %}
           <div id="product-{{ product.id }}" class="card mb-3 border-0 product-item" data-index="{{product.id}}">
@@ -24,7 +25,7 @@
                   </a>
                     <button hx-delete="{{ product.remove_from_basket_url }}" id="delete-button-{{product.id}}"
                             hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-                            hx-target="#basket-header"> Delete
+                            hx-target="#product-{{ product.id }}" hx-swap='outerHTML'> Delete
                     </button>
                 </div>
               </div>
@@ -36,7 +37,6 @@
     {% endif %}
   </div>
 </div>
-
 
 
 {% endblock %}

@@ -23,22 +23,16 @@
                     </div>
                     <div class="col">
                         <div class="row p-3">
-
-                            <div class="col-12 text-center">
-                              <ul>
-                                <li>Product ID: {{ product.id }}</li>
-                                {% for item in basket.content %}
-                                  <li> Basket item: {{ item }}  </li>
-                                {% endfor %}
-                                {% if product.id in  basket.content  %}
-                                <li>ok</li>
-                                {% endif %}
-                              </ul>
-                              <button id="add-to-basket-button" hx-post="{{ product.add_to_basket_url }}" hx-target="#basket-quantity"
-                                    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-                                    type="submit" class="btn btn-secondary btn-sm">Add to basket</button>
-                            </div>
-
+                          <div class="col-12 text-center">
+                          {% if added %}
+                              {% include "store/basket/_addedbutton.html" %}
+                          {% else %}
+                            <button id="add-to-basket-button" hx-post="{{ product.add_to_basket_url }}" hx-target="#add-to-basket-button"
+                                  hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-swap="outerHTML"
+                                  type="submit" class="btn btn-secondary btn-sm">Add to basket
+                            </button>
+                          {% endif %}
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -48,13 +42,4 @@
 
 </div>
 
-<script type="text/javascript">
-  add_to_basket_button = document.getElementById("add-to-basket-button");
-  add_to_basket_button.addEventListener('click', change_basket_button);
-
-  function change_basket_button(){
-    add_to_basket_button.innerHTML = "added!";
-    add_to_basket_button.disabled = true;
-  }
-</script>
 {% endblock %}

@@ -42,6 +42,15 @@ class Basket():
             del self.basket[product_id_str]
             self.save()
 
+    def product_in_basket(self, product):
+        """
+        Checks if a product is already in the basket
+        """
+        product_id_str =  str(product.id)
+
+        if product_id_str in self.basket:
+            return True
+        return False
 
 
     def __iter__(self):
