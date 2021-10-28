@@ -30,6 +30,7 @@
                             <button id="add-to-basket-button" hx-post="{{ product.add_to_basket_url }}" hx-target="#add-to-basket-button"
                                   hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-swap="outerHTML"
                                   type="submit" class="btn btn-secondary btn-sm">Add to basket
+                                  <img class="htmx-indicator" src="https://github.com/SamHerbert/SVG-Loaders/blob/master/svg-loaders/puff.svg"/>
                             </button>
                           {% endif %}
                         </div>

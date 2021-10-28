@@ -36,10 +36,10 @@ def update_basket_details(request):
     return render(request, 'store/basket/_details.html')
 
 def update_basket_number(request):
-    basket = Basket(request)
+    # basket = Basket(request)
     return render(request, 'store/basket/_number.html')
 
 
 def update_basket_footer(request):
-    basket = Basket(request)
+    # basket = Basket(request)
     return render(request, 'store/basket/_footer.html')
