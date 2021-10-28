@@ -46,7 +46,7 @@
                       </svg>
                       Basket
                       <div id="basket-number" class="d-inline-flex" hx-get="{% url 'basket:update-number' %}"
-                          hx-trigger="load delay:0.5s, updateBasketNumber from:body"   >
+                          hx-trigger="load delay:0.5s, basketUpdatedEvent from:body"   >
                           {% include "store/basket/_number.html" %}
                       </div>
                     </a>

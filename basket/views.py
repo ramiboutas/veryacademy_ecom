@@ -19,7 +19,7 @@ def add_to_basket(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     basket.add(product=product)
     response = render(request, 'store/basket/_addedbutton.html')
-    trigger_client_event(response, "updateBasketNumber", { },)
+    trigger_client_event(response, "basketUpdatedEvent", { },)
     return response
 
 @require_http_methods(["DELETE", "POST"])
@@ -28,8 +28,7 @@ def remove_from_basket(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     basket.delete(product=product)
     response = HttpResponse()
-    trigger_client_event(response, "updateBasketDetails", { },)
-    trigger_client_event(response, "updateBasketNumber", { },)
+    trigger_client_event(response, "basketUpdatedEvent", { },)
     return response
 
 
@@ -39,3 +38,8 @@ def update_basket_details(request):
 def update_basket_number(request):
     basket = Basket(request)
     return render(request, 'store/basket/_number.html')
+
+
+def update_basket_footer(request):
+    basket = Basket(request)
+    return render(request, 'store/basket/_footer.html')

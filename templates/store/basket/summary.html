@@ -7,7 +7,7 @@
 
 <div class="container">
   <div class="row" id="basket-header" hx-get="{% url 'basket:update-details' %}"
-      hx-trigger="load delay:0.5s, updateBasketDetails from:body"   >
+      hx-trigger="load delay:0.5s, basketUpdatedEvent from:body"   >
     {% include "store/basket/_details.html" %}
   </div>
   <br />
@@ -35,6 +35,11 @@
       {% endfor %}
     </div>
     {% endif %}
+  </div>
+  <br>
+  <div class="row" id="basket-footer" hx-get="{% url 'basket:update-footer' %}"
+      hx-trigger="load delay:0.5s, basketUpdatedEvent from:body"   >
+    {% include "store/basket/_footer.html" %}
   </div>
 </div>
 
