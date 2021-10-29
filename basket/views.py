@@ -18,7 +18,7 @@ def add_to_basket(request, product_id):
     basket = Basket(request)
     product = get_object_or_404(Product, id=product_id)
     basket.add(product=product)
-    response = render(request, 'store/basket/_addedbutton.html')
+    response = render(request, 'store/products/_added2basketalready.html')
     trigger_client_event(response, "basketUpdatedEvent", { },)
     return response
 

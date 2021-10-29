@@ -38,6 +38,7 @@ class TestViewResponses(TestCase):
         Test homepage response status
         """
         response = self.c.get('/')
+
         self.assertEqual(response.status_code, 200)
 
     def test_product_list_url(self):
